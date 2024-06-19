@@ -1,52 +1,49 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
 )
 
 var scanner = bufio.NewScanner(os.Stdin)
 
 func Reverse(s string) (result string) {
-	for _,v := range s {
-	  result = string(v) + result
+	for _, v := range s {
+		result = string(v) + result
 	}
-	return 
+	return
 }
 
 func IsPalindrome(word string) bool {
-	size := len(word)
 	var isPal bool
 
-	if size != 0 {
-		reversedWord := Reverse(word)
-		if reversedWord == word {
-			isPal = true
-		}
-	} else {
-		fmt.Print("Empty word")
-		isPal = false
+	reversedWord := Reverse(word)
+	if reversedWord == word {
+		isPal = true
 	}
 
 	return isPal
 }
 
 func main() {
-		scanner := bufio.NewScanner(os.Stdin)
-    	var text string
-   		for text != "q" { 
-			fmt.Print("Enter your text: ")
-			scanner.Scan()
-			text = scanner.Text()
-			if text != "q" {
-				fmt.Printf("Your text was %v\n", text)
+	scanner := bufio.NewScanner(os.Stdin)
+	var text string
+	for text != "q" {
+		fmt.Print("Enter your text: ")
+		scanner.Scan()
+		text = scanner.Text()
+		if text != "q" {
+			if len(text) == 0 {
+				fmt.Println("Your word is empty, analyse can't be done")
+			} else {
 				result := IsPalindrome(text)
-				if result == true {
+				if result {
 					fmt.Printf("%v is a palindrome :)\n", text)
 				} else {
 					fmt.Printf("%v is NOT a palindrome :(\n", text)
 				}
 			}
 		}
+	}
 }
