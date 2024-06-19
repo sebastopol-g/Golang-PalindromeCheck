@@ -6,8 +6,6 @@ import (
 	"os"
 )
 
-var scanner = bufio.NewScanner(os.Stdin)
-
 func Reverse(s string) (result string) {
 	for _, v := range s {
 		result = string(v) + result
